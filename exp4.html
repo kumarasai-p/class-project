@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <style>
+        
+        .error {
+            color: red;
+        }
+        .form{
+            margin-top: 50px;
+            margin-left: 50%;
+            position: absolute;
+            background-image: url(https://images.pexels.com/photos/13514947/pexels-photo-13514947.png?auto=compress&cs=tinysrgb&w=600);
+            background-size: cover;
+            border: 1px solid black;
+            width: fit-content;
+            padding: 4px;
+            text-align: center;
+        }
+        label{
+            color: #364968;
+        }
+        .box{
+            margin-top: 20px;
+            margin-left: 10%;
+            width: 80%;
+            height: 600px;
+            background-color: rgb(207, 138, 53);
+        }
+        input{
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8zZMi-rRTKFakJU60u0J-B4Drec67R8xKRg&s);
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAfCAMAAADOWS1PAAAAnFBMVEVHcEzbbnzSMjzSKi/z1OLZdIbRLj3VTVLchp7XT07WRTjQFR/aV0nSIyLfi2rZYGbRHybWUDDigjvfk2HSOCvTKSPggzHOL0vgZingcjfooEPRCA/RABD9zRbWNBj/0hTqkRz1vBricxnbWhrgaRz/1hbRAAbWPhjZTR3SGBT4xRfkexnUJxXsnxnniB3zsRnsph7lghj/4xTdnVxWZ844AAAAG3RSTlMAKMrYCjqrmRqFwvaq82xS4uXQj+fc6Vn20b+5vHGtAAABtklEQVQokW2T6XLiMBCEBb4xN1SOtW7J1i3b5P3fbUWyZEOgVaU/X/XUaKYFQAGeqshBXT1HVQ3q81Pb4rwAxfuxfiT18aUA1cE+svrdHirQqDC/NYu7Ys2bC6oCOxpoZzZVfgN5szFdnOgOZBvEnIF4/d0ahh1nSC1B52PQHcSrG1olpELELdjowKi6ueotWGOIKZv0Hpw1jrMw+Pry/PRy3DbKCBex2oPDqDkLxidX/cdadmq8ocyJKQMr6zC1Em5qsJ0mwrZ7KC3FfFyCFUNSj6PEy8XpwyJ08HJiWqKE1iPpo+GWc9HqEREurTOxJ6EEVSCoZ1y7SQ5KEiu4lowgQtOgaE/GceQeQuhlsNFZQhDqeQNeZc+EVBB26RjBPU8gIf0KCo0mImYIFU6+DkP3hXAB8ozRmXZQKCiMEQLy/orYPm2qDAg5TZGQk2YIzTj1hchcXvMheoTZ5cJHSQnpLxSnckR9xmLpnFGRYu+NmmP00AvKs89p7+C9uuu1+9pQM3S/NNwSmK9+sWH5Pw737AdJrEyz+FZ5H76m/Wcc2uYhlWU7DHBoy8Vvck1mlWXVjw/wF836PwJMGED8AAAAAElFTkSuQmCC" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                MOHAN BABU UNIVERSITY
+              </a>
+            </div>
+          </nav>
+    </div>
+    <div class="box">
+        
+        
+<div class="form">
+    <h2>Registration Form</h2>
+    <form id="registrationForm">
+        <label>First Name: <input type="text" id="firstName" /></label><span class="error" id="firstNameError"></span><br><br>
+        <label>Last Name: <input type="text" id="lastName" /></label><span class="error" id="lastNameError"></span><br><br>
+        <label>Username: <input type="text" id="username" /></label><span class="error" id="usernameError"></span><br><br>
+        <label>Password: <input type="password" id="password" /></label><span class="error" id="passwordError"></span><br><br>
+        <label>Date of Birth: <input type="date" id="dob" /></label><span class="error" id="dobError"></span><br><br>
+        <label>Postal Code: <input type="text" id="postalCode" /></label><span class="error" id="postalCodeError"></span><br><br>
+        <label>Mobile No: <input type="text" id="mobileNo" /></label><span class="error" id="mobileError"></span><br><br>
+        <label>Email: <input type="email" id="email" /></label><span class="error" id="emailError"></span><br><br>
+        <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+        $(document).ready(function () {
+            $('#registrationForm').submit(function (event) {
+                // Clear all error messages
+                $('.error').text('');
+
+                // Get input values
+                var firstName = $('#firstName').val();
+                var lastName = $('#lastName').val();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var dob = $('#dob').val();
+                var postalCode = $('#postalCode').val();
+                var mobileNo = $('#mobileNo').val();
+                var email = $('#email').val();
+
+                var isValid = true;
+
+                // First Name/Last Name validation
+                var nameRegex = /^[A-Za-z]{8,}$/;
+                if (!nameRegex.test(firstName)) {
+                    $('#firstNameError').text('First name must be at least 8 characters long and contain only alphabets.');
+                    isValid = false;
+                }
+                if (!nameRegex.test(lastName)) {
+                    $('#lastNameError').text('Last name must be at least 8 characters long and contain only alphabets.');
+                    isValid = false;
+                }
+
+                // Username validation
+                var usernameRegex = /^[A-Za-z0-9_]+$/;
+                if (!usernameRegex.test(username)) {
+                    $('#usernameError').text('Username must contain only letters, numbers, and underscores.');
+                    isValid = false;
+                }
+
+                // Password validation
+                var passwordRegex = /^(?=.*[A-Z])(?=.*\W).{8,}$/;
+                if (!passwordRegex.test(password)) {
+                    $('#passwordError').text('Password must be at least 8 characters long, contain one uppercase letter and one special symbol.');
+                    isValid = false;
+                }
+
+                // Date of Birth validation
+                if (!isValidDate(dob)) {
+                    $('#dobError').text('Invalid date. Please enter a valid date.');
+                    isValid = false;
+                }
+
+                // Postal Code validation
+                var postalCodeRegex = /^\d{6}$/;
+                if (!postalCodeRegex.test(postalCode)) {
+                    $('#postalCodeError').text('Postal Code must be a 6-digit number.');
+                    isValid = false;
+                }
+
+                // Mobile Number validation
+                var mobileRegex = /^\d{10}$/;
+                if (!mobileRegex.test(mobileNo)) {
+                    $('#mobileError').text('Mobile number must be exactly 10 digits.');
+                    isValid = false;
+                }
+
+                // Email validation
+                var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(email)) {
+                    $('#emailError').text('Invalid email format. Example: mailid@domainname.com');
+                    isValid = false;
+                }
+
+                // Prevent form submission if validation fails
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+
+            // Function to check valid date
+            function isValidDate(date) {
+                var testDate = new Date(date);
+                if (testDate instanceof Date && !isNaN(testDate)) {
+                    var day = parseInt(date.split("-")[2]);
+                    var month = parseInt(date.split("-")[1]);
+                    var year = parseInt(date.split("-")[0]);
+
+                    // Checking for 29th February in non-leap years
+                    if (month === 2 && day === 29 && !(year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0))) {
+                        return false;
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+    </script>
+</div>
+    </div>
+</body>
+</html>
